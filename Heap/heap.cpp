@@ -79,4 +79,28 @@ class Heap
 
         Heapify(0);
     }
+    void showHeap()
+    {
+        for(int i=0;i<v.size();i++)
+        {
+            cout<<v[i]<<" ";
+        }
+        cout<<endl;
+    }
 };
+
+int main()
+{
+    Heap h(100,true);
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        int temp;
+        cin>>temp;
+        h.push(temp);
+    }
+
+    h.showHeap();
+    return 0;
+}
