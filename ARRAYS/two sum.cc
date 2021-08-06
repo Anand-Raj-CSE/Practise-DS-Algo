@@ -3,6 +3,31 @@
 #include<unordered_set>
 using namespace std;
 
+
+// Leetcode submitted code: https://leetcode.com/problems/two-sum/
+ vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;        
+        int n = nums.size();
+        unordered_map<int,int> m;
+        for(int i=0;i<n;i++)
+        {
+            int f = target-nums[i];
+            auto it = m.find(f);
+            if(it != m.end())
+            {
+                int j=it->second;
+                ans.push_back(j);
+                ans.push_back(i);
+            }
+            m[nums[i]] = i;
+            
+            
+        }
+        return ans;
+    }
+
+
+
 // Brute force - O(n2)
 vector<int> twoSumbf(vector<int>& nums, int target) {
         vector<int> ans;        
@@ -70,6 +95,7 @@ vector<int> twoSumOPT(vector<int>& nums, int target) {
         return ans;
     }
 
+
 int main()
 {
     int n;
@@ -93,6 +119,11 @@ int main()
     cout<<endl;
     // Optimized using Hash map
     ans = twoSumOPT(a,ta);
+    for(auto j:ans)
+        cout<<j<<" ";
+    cout<<endl;
+    //Leetcode submitted code
+    ans = twoSum(a,ta);
     for(auto j:ans)
         cout<<j<<" ";
     cout<<endl;
