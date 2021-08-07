@@ -1,5 +1,7 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
+using namespace std;
 
 vector<vector<int>> threeSumBF(vector<int>& nums,int tagrget) {
         vector<vector<int>> ans;
@@ -30,7 +32,14 @@ vector<vector<int>> threeSumBF(vector<int>& nums,int tagrget) {
         return ans;
     }
 
+vector<vector<int>> threeSumBF(vector<int>& nums,int tagrget) {
+        vector<vector<int>> ans;
+        int n = nums.size();
+        // 1st we would sort the entire array
+        sort(nums.begin(),nums.end());
 
+        return ans;
+    }
 
 int main()
 {
@@ -44,7 +53,18 @@ int main()
         a.push_back(t);
     }
     int ta;cin>>ta;
+    // Brute Force
     vector<int> ans = 3sumBF(a,ta);
+    for(auto j:ans)
+    {
+        for(auto k:j)
+        {
+            cout<<k<<" "
+        }
+        cout<<endl;
+    }
+    // Optimized one
+    vector<int> ans = 3sumOPT(a,ta);
     for(auto j:ans)
     {
         for(auto k:j )
@@ -53,18 +73,8 @@ int main()
         }
         cout<<endl;
     }
-    // Binary Search Optimized
-    ans = 3sum(a,ta);
-    for(auto j:ans)
-        cout<<j<<" ";
-    cout<<endl;
-    // Optimized using Hash map
-    ans = twoSumOPT(a,ta);
-    for(auto j:ans)
-        cout<<j<<" ";
-    cout<<endl;
     //Leetcode submitted code
-    ans = twoSum(a,ta);
+    ans = 3sum(a,ta);
     for(auto j:ans)
         cout<<j<<" ";
     cout<<endl;
