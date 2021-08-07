@@ -3,6 +3,40 @@
 #include<algorithm>
 using namespace std;
 
+
+//Leetcode submitted - https://leetcode.com/problems/3sum/
+vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> ans;
+        int n = nums.size();
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<=n-3;i++)
+        {
+            int j = i+1;
+            int k = n-1;
+            while(j<k)
+            {
+                int current_sum = nums[i];
+                current_sum+=nums[j];
+                current_sum+=nums[k];
+                if(current_sum == 0)
+                {
+                    ans.push_back({nums[i],nums[j],nums[k]});
+                    j++;
+                    k--;
+                }
+                else if(current_sum<0)
+                {
+                    k--;
+                }
+                else
+                    j++;
+            }
+        }
+        return ans;
+        
+    }
+
+
 vector<vector<int>> 3SumBF(vector<int>& nums,int tagrget) {
         vector<vector<int>> ans;
         int n = nums.size();
@@ -65,7 +99,6 @@ vector<vector<int>> 3sumOPT(vector<int>& nums,int target)
                 j++;
             }
         }
-
         return ans;
 }
 
