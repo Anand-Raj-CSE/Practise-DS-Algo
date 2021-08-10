@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<stdio.h>
 using namespace std;
 
 
@@ -17,8 +17,11 @@ int main()
         float lphundredkm = (fuel/kms)*100;
         float miles = kms*0.6214;
         float gallon = fuel*0.2642;
-
-
+        float milespergallon = miles/gallon;
+        //  Considered printing 4 decimal places
+        printf("%0.4f Litres/100 KM",lphundredkm);
+        cout<<endl;
+        printf("%0.4f Miles/Gallons",milespergallon);
     }
 
     return 0;
