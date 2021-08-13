@@ -1,12 +1,49 @@
+// https://leetcode.com/problems/longest-mountain-in-array/
+
+
 #include<iostream>
 #include<vector>
 using namespace std;
 
+// leetcode submitted code
+ int longestMountain(vector<int>& a) {
+        int n = a.size();
+        if(n<3)
+            return 0;
+        int largest = 0;
+        for(int i=1;i<=n-2;)
+        {
+            if(a[i]>a[i-1] and a[i]>a[i+1])
+            {
+                int count = 1;
+                int j=i;
+                while(j>=1 and a[j]>a[j-1])
+                {
+                    j--;
+                    count++;
+                }
+                while(i<=n-2 and a[i]>a[i+1])
+                {
+                    i++;
+                    count++;
+                }
+                largest = max(largest,count);
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return largest;
+        
+    }
+
+
+
+
 // 1. Identify the peak , whose previous and next is smaller.
 // 2. Once identified the peak and start moving backwards and identify the length of smaller elements say x, same on the right side say y.
 // 3. Add x and y then do step 2 for another peak.
-
-
 int max_len_mountain_Peak(vector<int> a, int n)
 {
     // O(n) implimentation
@@ -55,6 +92,8 @@ int main()
     }
     // Brute Force O(n^3)
     cout<<"Brute Force :"<<max_len_mountain_Peak(a,n)<<endl;
+    // Leetcode
+    cout<<longestMountain(a)<<endl;
    
 
     return 0;
