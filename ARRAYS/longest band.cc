@@ -4,8 +4,12 @@
 #include<vector>
 #include<algorithm>
 #include<climits>
+#include<unordered_set>
 using namespace std;
 
+
+
+//nlogn solution using sorting
 int LongestSubsequenceSorting(vector<int> &a)
 {
     int ans=INT_MIN;
@@ -28,6 +32,43 @@ int LongestSubsequenceSorting(vector<int> &a)
     return ans;
 }
 
+// O(n) using unordred set
+int LongestSubsequenceOPT(vector<int> a)
+{
+    // we would store all the elements in an unordered map.
+    unordered_set<int> s;
+    // Inserting elements in the set
+    for(auto x : a)
+    {
+        s.insert(x);
+    }
+    int ans = INT_MIN;
+    // Now iterating over the array
+    for(auto element:s)
+    {
+        int parent = element-1;
+        // If parent exists then we will ignore the element
+        if(s.find(parent)==s.end())
+        {
+            int next=element+1;
+            int cnt=1;
+            while (s.find(next) != s.end())
+            {
+                next++;
+                cnt++;
+            }
+            if(cnt>ans)
+            ans=cnt;
+            
+        }
+    }
+    return ans;
+
+}
+
+
+
+
 int main()
 {
     int n;
@@ -42,6 +83,7 @@ int main()
     // We have to find out the largest subsequence of array which has consecuive numbers.
     // We can do sorting and then iterate over the sorted array and find the argest band 
     cout<<LongestSubsequenceSorting(a);
-
+    // Now the optimized one using unordered_set
+    cout<<LongestSubsequenceOPT(a);
     return 0;
 }
