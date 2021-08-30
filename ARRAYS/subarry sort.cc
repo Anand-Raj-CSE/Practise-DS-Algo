@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include<unordered_set>
+#include<climits>
 #include<algorithm>
 using namespace std;
 
@@ -37,6 +38,51 @@ pair<int,int> SortingSol(vector<int> a)
 
 
 
+bool outOfOrder(vector<int> a,int i)
+{
+    int x=a[i];
+    if(i==0)
+        return x>a[1];
+    if(i==a.size()-1)
+        return x<a[i-1];
+    return x>a[i+1] || x<a[i-1];
+
+}
+
+//Optimized solution - O(n)
+pair<int,int> Optimized(vector<int> a)
+{
+    int smallest=INT_MAX;
+    int largest = INT_MIN;
+    int n = a.size();
+    for(int i=0;i<n;i++)
+    {
+        int x = a[i];
+        if(outOfOrder(a,i))
+        {
+            smallest=min(smallest,x);
+            largest=max(largest,x);
+        }
+    }
+    // Now we have to find out the correct places for these elements
+    if(smallest==INT_MAX)
+        return {-1,-1};
+
+    int left=0;
+    while (smallest >= a[left])
+    {
+        left++;
+    }
+    int right = n-1;
+    while(largest <= a[right])
+    {
+        right--;
+    }
+    return {left,right};
+    
+}
+
+
 
 int main()
 {
@@ -51,9 +97,12 @@ int main()
     }
     // We want to know that which part of the array must be sorted so that we know after their sorting our whole array would be sorted.
     // We would use sorting for this taking NogN time.
-    pair<int,int> ans = SortingSol( a);
+    pair<int,int> ans = SortingSol(a);
     cout<<"Sorting needed from : "<<ans.first<<" to : "<<ans.second<<endl;
 
+    // Optimized solution - O(n) , just by iterating we would know that wheather a number is in correct sorted order or not
+    ans = Optimized(a);
+    cout<<"Sorting needed from : "<<ans.first<<" to : "<<ans.second<<endl;
 
     return 0;
 }
