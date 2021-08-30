@@ -27,11 +27,10 @@ pair<int,int> SortingSol(vector<int> a)
         }
         if(flag1 & flag2)
         break;
-        else
-        {
-            i++;
-            j--;
-        }
+        if(!flag1)
+        i++;
+        if(!flag2)
+        j--;
     }
      return p;
 }
@@ -52,7 +51,7 @@ int main()
     }
     // We want to know that which part of the array must be sorted so that we know after their sorting our whole array would be sorted.
     // We would use sorting for this taking NogN time.
-    pair<int,int> ans = SortingSol(vector<int> a);
+    pair<int,int> ans = SortingSol( a);
     cout<<"Sorting needed from : "<<ans.first<<" to : "<<ans.second<<endl;
 
 
