@@ -1,4 +1,4 @@
-
+//https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
 
 #include<iostream>
 #include<vector>
@@ -6,6 +6,41 @@
 #include<climits>
 #include<algorithm>
 using namespace std;
+
+
+//Leet tried but cases failed
+bool isOutOfOrder(vector<int> &a,int i,int &flag)
+    {
+        int x=a[i];
+        if(i==0)
+            return x>a[1];
+        if(i==a.size()-1)
+            return x<a[i-1];
+        
+        return x>a[i+1] || x<a[i-1];
+        
+        
+    }
+    int findUnsortedSubarray(vector<int>& nums) {
+        int n = nums.size();
+        int smallest = INT_MAX;
+        int largest = INT_MIN;
+        if(n==1)
+            return 0;
+        int flag=0;
+        for(int i=0;i<n;i++)
+        {
+            if(isOutOfOrder(nums,i,flag))
+            {
+                smallest = min(smallest,i);
+                largest = max(largest,i);
+            }
+        }
+        if(smallest==INT_MAX)
+            return 0;
+        return largest-smallest+1;
+    }
+
 
 
 // Sorting apparoach
