@@ -51,3 +51,14 @@ ordered by order_date. */
 Select customer_id,order_id,
     sum(amount) over (PARTITION by customer_id order by order_date DESC) as t from orders
     order by customer_id,order_date
+
+/*SQL Quiz – Q11
+Question:
+Table: orders(order_id, customer_id, order_date, amount)
+👉 Find the customers whose cumulative order amount exceeded 10,000
+ at any point, and show the first date this happened per customer. */
+ with cte as (
+    Select customer_id,amount, order_date , sum(amount) over 
+    (PARTITION BY customer_id order by order_date) as t from orders
+ )
+ Select customer_id,amount, min(order_date)  from cte where t > 10000 group by customer_id
