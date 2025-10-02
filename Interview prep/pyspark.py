@@ -47,4 +47,74 @@ Replace null values in age with 0.
 Replace null values in salary with the mean salary of the column.
 """
 df = orders.fillna(col('age'),0).when(isnull(col('salary'))==true,mean(col('amount')))
-mean_salary =  orders.select(mean('salary'))
+mean_salary =  orders.select(mean('salary')).collect()[0][0]
+orders.fillna({"age":0},{"salary":mean_salary})
+
+'''
+Task 6: Join two DataFrames
+Description:
+You have two DataFrames:
+customers → columns:
+id (integer)
+name (string)
+orders → columns:
+customer_id (integer)
+amount (float)
+Goal: Join them to get a new DataFrame with:
+customer_id
+name
+amount
+'''
+new_df = customers.join(orders , orders.customer_id = customers.id , 'inner')\
+    .select(order.customer_id,customers.name,order.amount)
+
+"""
+Task 7: Group and aggregate
+Description:
+You have a DataFrame orders with columns:
+customer_id
+amount
+Goal:
+For each customer, compute:
+Average amount → avg_amount
+Minimum amount → min_amount
+Maximum amount → max_amount
+Output should have columns:
+customer_id | avg_amount | min_amount | max_amount
+"""
+df = order.groupBy('customer_id').agg(avg('amount')).alias('avg_amount')\
+          .min(amount).alias('min_amount').max(amount).alias('max_amount')
+# correct code
+df_agg = orders.groupBy('customer_id').agg(avg(col('amount')).alias('avg_amount'),\
+    min(col('amount')).alias('min_amount'),
+    max(col('amount')).alias('max_amount')
+)
+"""
+Task 8: Rank orders per customer by amount
+Description:
+You have a DataFrame orders with columns:
+customer_id
+amount
+order_date
+Goal:
+For each customer, rank their orders by amount in descending order.
+Add a new column rank with this rank.
+"""
+df = order.groupBy('customer_id').agg(sum('amount').alias('Total_amount'))
+window_sf = window.orderBy(DESC('Total_amount'))
+ranked_df = df.withColumn('Ranked_col',dense_rank().over(window_sf).partitionBy('order_date'))
+ranked_df.show()
+#Corrected code
+window_spec = Window.partitionBy('customer_id').orderBy(Desc('amount'))
+ranked_df = orders.withColumn('ranked_col',dense_rang().over()window_spec)
+ranked_df.show()
+"""
+Task 10: Remove duplicates
+Description:
+You have a DataFrame df with columns:
+customer_id
+amount
+Goal:
+Remove duplicate rows based on customer_id so that each customer appears only once.
+"""
+df = orders.dropDuplicates(['customer_id'])
