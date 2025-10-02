@@ -46,3 +46,5 @@ Goal:
 Replace null values in age with 0.
 Replace null values in salary with the mean salary of the column.
 """
+df = orders.fillna(col('age'),0).when(isnull(col('salary'))==true,mean(col('amount')))
+mean_salary =  orders.select(mean('salary'))
