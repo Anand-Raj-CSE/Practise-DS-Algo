@@ -1,5 +1,4 @@
---- get the new and repeated customers data 
-
+--- get the new and repeated customers data
 
 with first_visit as (
     Select customer_id,min(order_date) as first_visit_date from customer_orders
