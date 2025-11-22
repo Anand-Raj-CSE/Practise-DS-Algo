@@ -1,0 +1,16 @@
+EmployeeID,FirstName,LastName,Department,Salary,JoinDate,Experience
+1,John,Doe,IT,80000,2021-01-15,3
+2,Jane,Smith,HR,70000,2020-05-22,4
+3,Robert,Brown,IT,85000,2019-11-03,5
+4,Emily,Davis,Finance,90000,2022-07-19,2
+5,Michael,Johnson,IT,75000,2023-03-11,1
+6,Sarah,Williams,HR,68000,2020-08-30,4
+7,David,Jones,Sales,72000,2021-02-14,3
+8,Lisa,Garcia,Finance,92000,2019-12-01,6
+9,James,Miller,Sales,71000,2022-04-10,2
+10,Emma,Rodriguez,IT,83000,2020-09-15,4
+11,William,Martinez,HR,69000,2021-06-20,3
+12,Mary,Taylor,Finance,88000,2019-10-05,5
+13,Richard,Anderson,Sales,77000,2023-01-25,2
+14,Patricia,Thomas,IT,81000,2020-11-30,4
+15,Charles,Moore,HR,70000,2022-02-18,2
