@@ -1,0 +1,40 @@
+Data Aggregation and Transformation
+Compute the total and average sales revenue per region and product for the last three months in the dataset.
+
+Find the top 5 employees by total quantity sold (after joining employees and sales).
+
+Calculate the month-over-month growth in total sales revenue, using window functions for analysis.
+
+Identify products where average order quantity is above the overall mean, grouped by product.
+
+Data Cleaning and Type Handling
+Identify and handle missing or invalid values in numeric columns such as Salary, Quantity, and UnitPrice.
+
+Standardize department names in employees (e.g., merge "HR" and "Human Resources" if both exist).
+
+Detect and report inconsistent date or data formats, then convert them into a uniform format.
+
+Join Operations and Performance
+Perform a left join between employees and sales, returning all employees plus their total sales (zero if no sales).
+
+Implement a broadcast join where appropriate, and explain when this is optimal.
+
+Advanced Window Functions
+Use window functions to assign a rank to employees based on their total revenue generated (descending), partitioned by department.
+
+Calculate the running total of revenue per region by date.
+
+Data Engineering and Optimization
+Demonstrate how you would partition the sales data optimally for distributed processing, and explain your choice.
+
+Explain or show with code how to cache and un-cache DataFrames when reusing them for multiple transformations.
+
+Real-World Workflow Scenarios
+You are given a new CSV of “employee awards” (EmployeeID, AwardType, AwardDate). Integrate this with your main employee DataFrame for analytics.
+
+Create a pipeline to incrementally process daily sales files as they arrive in a directory, only appending new records.
+
+Quality and Anomaly Detection
+Find employees with suspicious sales activity (e.g., unusually high average order amount compared to peers in the same department).
+
+Identify and remove duplicate records in both employees and sales datasets.
