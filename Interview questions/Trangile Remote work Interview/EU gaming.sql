@@ -40,3 +40,9 @@ description, rating, review_count, style_attributes, total_sizes, available_size
 Select am.product_name,am.brand_name,am.price,am.rating from innerwear_amazon_com am where 
 NOT EXISTS (Select 1 from innerwear_macys_com ma where am.product_name = ma.product_name and am.mrp=ma.mrp)
 and NOT EXISTS (Select 1 from innerwear_topshop_com ts where am.product_name = ts.product_name and ts.mrp=am.mrp)
+
+--------------------------- Code for Anti join -----------------------
+Select am.product_name,am.brand_name,am.price,am.rating from innerwear_amazon_com am
+left join innerwear_macys_com ma on am.product_name = ma.product_name and am.mrp=ma.mrp
+left join innerwear_topshop_com ts on am.product_name = ts.product_name and am.mrp=ts.mrp
+where ma.product_name is NULL and ts.product_name is NULL
